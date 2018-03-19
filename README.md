@@ -22,8 +22,8 @@ $ make
 $ python setup.py build
 $ python setup.py install
 $ cd ../../
-$ git clone https://github.com/yunjey/pytorch-tutorial.git
-$ cd pytorch-tutorial/tutorials/03-advanced/image_captioning/
+$ git clone https://github.com/OLeoghain/image_caption-lstm
+$ cd image_caption-lstm
 ```
 
 #### 2. Download the dataset
@@ -53,5 +53,9 @@ $ python train.py
 $ python sample.py --image='png/example.png'
 ```
 
+#### 6. Optional
+
+Pretrained Encoder Decoder Models and Vocab [Download](https://drive.google.com/drive/folders/1QW8RsfB11z7Qc7yNYhjBi4eFI5E13cG0?usp=sharing).
+You should extract pretrained_model.zip to `./models/` and vocab.pkl to `./data/` using `unzip` command.
 <br>
 
