@@ -13,6 +13,10 @@ In the test phase, the encoder part is almost same as the training phase. The on
 
 ## Usage 
 
+#### 0. PreRequisites
+	Latest Version of PyTorch Download from [Here](https://github.com/pytorch/pytorch)
+	CUDA 8.0 or Higher
+	CUDnn 7.0 or Higher
 
 #### 1. Clone the repositories
 ```bash
