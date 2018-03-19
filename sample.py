@@ -9,6 +9,7 @@ from torchvision import transforms
 from build_vocab import Vocabulary
 from model import EncoderCNN, DecoderRNN
 from PIL import Image
+from progress.bar import Bar
 
 
 def to_var(x, volatile=False):
@@ -55,12 +56,13 @@ def main(args):
     if torch.cuda.is_available():
         encoder.cuda()
         decoder.cuda()
-    
-    # Generate caption from image
+    bar = Bar('Processing', max=100)
+    for i in range(100):
+	    bar.next()
+	# Generate caption from image
     feature = encoder(image_tensor)
     sampled_ids = decoder.sample(feature)
     sampled_ids = sampled_ids.cpu().data.numpy()
-    
     # Decode word_ids to words
     sampled_caption = []
     for word_id in sampled_ids:
@@ -69,11 +71,13 @@ def main(args):
         if word == '<end>':
             break
     sentence = ' '.join(sampled_caption)
-    
-    # Print out image and generated caption.
-    print (sentence)
+    bar.finish()
+	# Print out image and generated caption.
+    print("\n")
+    print(sentence)
     image = Image.open(args.image)
-    plt.imshow(np.asarray(image))
+    imgplot=plt.imshow(np.asarray(image))
+    plt.show()
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -94,4 +98,5 @@ if __name__ == '__main__':
     parser.add_argument('--num_layers', type=int , default=1 ,
                         help='number of layers in lstm')
     args = parser.parse_args()
+
     main(args)
